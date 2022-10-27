@@ -1,43 +1,35 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 
 public class Main {
-
-
-//////////////////////////////try4///////////////////////////////////
+    //////////////////////////////try4///////////////////////////////////
 
     //operator functions:
     public static int result = 0; //keep the latest result
 
-    public static int add(int x, int y) {
+    public static void add(int x, int y) {
         result = x + y;
         System.out.println("The result is: "+result);
-        return result;
     }
 
-    public static int subtract(int x, int y) {
+    public static void subtract(int x, int y) {
         result = x - y;
         System.out.println("The result is: "+result);
-        return result;
     }
 
-    public static int multiply(int x, int y) {
+    public static void multiply(int x, int y) {
         result = x * y;
         System.out.println("The result is: "+result);
-        return result;
     }
 
-    public static int divide(int x, int y) {
+    public static void divide(int x, int y) {
         result = x / y;
         System.out.println("The result is: "+result);
-        return result;
     }
 
-    public static int modulo(int x, int y) {
+    public static void modulo(int x, int y) {
         result = x % y;
         System.out.println("The result is: "+result);
-        return result;
     }
 
 
@@ -46,7 +38,6 @@ public class Main {
         //variable area:
         int num1, num2;
         String operator;
-        boolean end = false;
         Scanner scan = new Scanner(System.in);
 
         //calculator code:
@@ -54,15 +45,14 @@ public class Main {
         num1 = scan.nextInt();
         result = num1;
 
-        while(end == false) {
-            System.out.println("enter operator: ");
+        while(true) {
+            System.out.println("enter operator(or \"end\" to terminate the calculator): ");
             operator = scan.next();
             if (operator.equals("end")) {
-                end = true;
                 System.out.println("calculator terminated. final result: "+result);
                 break;
             }
-            System.out.println("enter a number(or \"end\" to terminate the calculator): ");
+            System.out.println("enter a number: ");
             num2 = scan.nextInt();
             switch(operator) {
                 case "+":
