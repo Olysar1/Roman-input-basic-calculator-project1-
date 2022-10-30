@@ -1,5 +1,6 @@
 # group-13-teamwork-task-1
 calculator making user input operations on user input data until user inputs keyword.
+NOTE: calculator will receive only the Roman numbers.
 
 1 - The calculator asks for user input on every step of taking another action.
 2 - User must press "Enter" each time he/she types the information asked for.
