@@ -16,14 +16,20 @@ public class Main {
         put('M',1000);
     }};
 
-    static Map<Integer, Character> arabicToRomanMap = new HashMap<>(){{
-        put(1, 'I');
-        put(5, 'V');
-        put(10, 'X');
-        put(50, 'L');
-        put(100, 'C');
-        put(500, 'D');
-        put(1000, 'M');
+    static Map<Integer, String> arabicToRomanMap = new HashMap<>(){{
+        put(1, "I");
+        put(4, "IV");
+        put(5, "V");
+        put(9, "IX");
+        put(10, "X");
+        put(40, "XL");
+        put(50, "L");
+        put(90, "XC");
+        put(100, "C");
+        put(400, "CD");
+        put(500, "D");
+        put(900, "DM");
+        put(1000, "M");
     }};
 
     //converter method(Arabic to Roman);
@@ -41,7 +47,7 @@ public class Main {
         int i = 0;
 
         while ((arabic > 0 && (i < listKey.size()))) {
-            Character currentSymbol = arabicToRomanMap.get(listKey.get(i));
+            String currentSymbol = arabicToRomanMap.get(listKey.get(i));
             if(arabic >= listKey.get(i)) {
                 result+=currentSymbol;
                 arabic-=listKey.get(i);
@@ -70,7 +76,7 @@ public class Main {
     static Scanner scan = new Scanner(System.in); //scanner
 
     public static void showCurrentResult() { //print current result
-        System.out.println(arabicToRoman(result));
+        System.out.println("current result is: "+arabicToRoman(result));
     }
     //operator methods:
     public static void add(int x, int y) {
