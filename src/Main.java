@@ -16,9 +16,43 @@ public class Main {
         put('M',1000);
     }};
 
-    //converter function(Arabic to Roman);
+    static Map<Integer, Character> arabicToRomanMap = new HashMap<>(){{
+        put(1, 'I');
+        put(5, 'V');
+        put(10, 'X');
+        put(50, 'L');
+        put(100, 'C');
+        put(500, 'D');
+        put(1000, 'M');
+    }};
 
-    //converter function(Roman to Arabic):
+    //converter method(Arabic to Roman);
+    public static String arabicToRoman(int arabic) {
+        //sorted list of romanToArabicMap.values():
+        List<Integer> listKey = new ArrayList<>(arabicToRomanMap.keySet());
+        Collections.sort(listKey, Collections.reverseOrder());
+
+        if (arabic <= 0 || arabic >= 4000) {
+            System.out.println("Illegal value. enter number between 0 and 4000.");
+            return "";
+        }
+
+        String result = "";
+        int i = 0;
+
+        while ((arabic > 0 && (i < listKey.size()))) {
+            Character currentSymbol = arabicToRomanMap.get(listKey.get(i));
+            if(arabic >= listKey.get(i)) {
+                result+=currentSymbol;
+                arabic-=listKey.get(i);
+            } else {
+                i++;
+            }
+        }
+        return result;
+    }
+
+    //converter method(Roman to Arabic):
     public static int romanToArabic(String roman) {
 
         int arabicNum = romanToArabicMap.get(roman.toUpperCase().charAt(roman.length()-1));
@@ -32,45 +66,44 @@ public class Main {
         }
         return arabicNum;
     }
-
-    //operator functions:
     public static int result = 0; //keep the latest result
     static Scanner scan = new Scanner(System.in); //scanner
 
+    public static void showCurrentResult() { //print current result
+        System.out.println(arabicToRoman(result));
+    }
+    //operator methods:
     public static void add(int x, int y) {
         result = x + y;
-        System.out.println("The current result is: "+result);
+        showCurrentResult();
     }
 
     public static void subtract(int x, int y) {
         result = x - y;
-        System.out.println("The current result is: "+result);
+        showCurrentResult();
     }
 
     public static void multiply(int x, int y) {
         result = x * y;
-        System.out.println("The current result is: "+result);
+        showCurrentResult();
     }
 
     public static void divide(int x, int y) {
         result = x / y;
-        System.out.println("The current result is: "+result);
+        showCurrentResult();
     }
 
     public static void modulo(int x, int y) {
         result = x % y;
-        System.out.println("The current result is: "+result);
+        showCurrentResult();
     }
 
 //////////////////////////////////////
     public static void main(String[] args) {
 
-//        int p =  romanToArabic("McMXlVIII");
-//        System.out.println(p);
-
         //variable area:
         int num1, num2;
-        String operator;
+        String operatorInput;
 
         //calculator code:
         System.out.println("enter the first number: ");
@@ -79,16 +112,16 @@ public class Main {
 
         while(true) {
             System.out.println("enter operator(or \"end\" to terminate the calculator): ");
-            operator = scan.nextLine();
-            if (operator.equals("end")) {
-                System.out.println("calculator terminated. final result: "+result);
+            operatorInput = scan.nextLine();
+            if (operatorInput.equals("end")) {
+                System.out.println("calculator terminated. final result: "+arabicToRoman(result));
                 break;
             }
             System.out.println("enter a number: ");
-            String x = scan.nextLine();
-            num2 = romanToArabic(x);
+            String numInput = scan.nextLine();
+            num2 = romanToArabic(numInput);
 
-            switch(operator) {
+            switch(operatorInput) {
                 case "+":
                     add(result, num2);
                     break;
